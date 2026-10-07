@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0f172a">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>Кодекс Мудрости</title>
+<style>
+:root{--bg:#16110f;--cd:#211a17;--bd:#3a2f2a;--tx:#f1e8d8;--sub:#a39384;--ac:#e0705f;--red:#a8322a;--in:#2a211d;--gold:#d9b36c}
+.light{--bg:#f3ecdf;--cd:#fbf7ef;--bd:#ddd1bc;--tx:#2a1d18;--sub:#7a6a5c;--ac:#9e2a2b;--in:#efe6d6;--gold:#8f6218}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font:15px/1.5 -apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--tx);margin:0 auto;padding:0 16px 40px;max-width:640px;transition:background .3s,color .3s}
+.band{height:12px;margin:0 -16px;background:linear-gradient(45deg,transparent 42%,var(--red) 42% 58%,transparent 58%),linear-gradient(-45deg,transparent 42%,var(--red) 42% 58%,transparent 58%);background-size:12px 12px}
+header{display:flex;justify-content:space-between;align-items:center;padding:18px 0 4px}
+h1{font:700 23px Georgia,"Times New Roman",serif;margin:0}
+.hr{display:flex;gap:8px}
+select,input,textarea{width:100%;padding:12px;margin:6px 0 12px;border:1px solid var(--bd);border-radius:12px;font:16px inherit;font-family:inherit;background:var(--in);color:var(--tx)}
+button{background:var(--red);color:#fff;border:0;padding:13px;width:100%;border-radius:12px;font-size:15px;font-weight:600;cursor:pointer;margin-bottom:8px}
+.pill{background:var(--cd);color:var(--tx);border:1px solid var(--bd);width:auto;margin:0;padding:0 12px;height:38px;border-radius:19px;font-size:13px}
+.pill.rd{width:38px;padding:0;font-size:18px}
+.sub{font-size:12px;color:var(--sub)}
+.qd{margin:14px 0 22px;padding:18px 2px 4px;border-top:1px solid var(--bd)}
+.qd small{color:var(--gold);font-size:13px;font-weight:600;display:block;margin-bottom:10px}
+.qd div{font:italic 22px/1.4 Georgia,serif}
+.qd .by{font:14px -apple-system,sans-serif;color:var(--sub);margin-top:10px}
+.box{background:var(--cd);padding:16px;border-radius:16px;margin-bottom:14px;border:1px solid var(--bd)}
+.box h3{margin:0 0 6px;font-size:15px}
+.box.nw h3{font:700 18px Georgia,serif}
+.ar{display:flex;gap:8px;align-items:center}
+.ar input{margin:0;flex:1}
+.ar button{width:auto;margin:0;padding:13px 18px}
+.ar button.off{background:transparent;color:var(--tx);border:1px solid var(--bd)}
+.qh{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-weight:600;font-size:15px}
+#sc,#rcnt{border:1px solid var(--gold);color:var(--gold);padding:3px 10px;border-radius:12px;font-size:12px}
+#qq{font:italic 16px/1.5 Georgia,serif;margin-bottom:12px}
+#qo{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.qb{background:var(--in);color:var(--tx);border:1px solid var(--bd);padding:10px 6px;font-size:13px;margin:0;font-weight:500}
+#chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:10px;margin-bottom:6px}
+.chip{background:transparent;color:var(--sub);border:1px solid var(--bd);padding:7px 14px;border-radius:20px;font-size:13px;white-space:nowrap;width:auto;margin:0;font-weight:500}
+.chip.on{background:var(--tx);color:var(--bg);border-color:var(--tx)}
+.card{background:var(--cd);padding:18px;margin-bottom:12px;border-radius:16px;border:1px solid var(--bd);position:relative}
+.card h3{margin:0 0 8px;font:700 18px Georgia,serif;padding-right:34px}
+.card p{margin:0;font:16px/1.6 Georgia,serif;white-space:pre-line}
+.au{font-size:13px;color:var(--sub);margin-top:8px}
+.tag{display:block;color:var(--gold);font-size:12px;font-weight:600;margin-bottom:6px}
+.fav{position:absolute;top:12px;right:10px;background:none;width:auto;font-size:21px;padding:4px 6px;margin:0}
+.row{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.tb{background:transparent;border:1px solid var(--bd);color:var(--tx);margin:0;padding:7px 13px;font-size:15px;width:auto;border-radius:10px;font-weight:400}
+.del{color:var(--ac)}
+.bk{display:flex;gap:8px;margin:6px 0 14px}
+.bk button{background:transparent;color:var(--sub);border:1px dashed var(--bd);padding:10px;font-size:13px;margin:0;font-weight:500}
+#inst{display:none;background:var(--gold);color:#16110f;margin-top:12px}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--tx);color:var(--bg);padding:10px 16px;border-radius:12px;font-size:13px;opacity:0;pointer-events:none;transition:opacity .3s;z-index:9}
+#toast.s{opacity:1}
+.dots{display:flex;gap:5px;margin:12px 0 6px}.dot{flex:1;height:22px;border-radius:6px;background:var(--in);border:1px solid var(--bd)}.dot.g{background:#3f7d58;border-color:#3f7d58}.dot.r{background:var(--red);border-color:var(--red)}.dot.td{outline:2px solid var(--gold);outline-offset:1px}#rq{font:700 18px Georgia,serif;margin:8px 0 12px}#rans{font:italic 16px/1.5 Georgia,serif;margin-bottom:12px}
+#rd{position:fixed;inset:0;background:var(--bg);z-index:20;display:flex;flex-direction:column;padding:12px 16px;max-width:640px;margin:auto}#rd[hidden]{display:none}.rh{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px}.rh b{font:700 17px Georgia,serif}#rtxt{flex:1;overflow:auto;font:19px/1.7 Georgia,serif;white-space:pre-wrap;padding:6px 2px}#rtxt span{border-radius:4px}#rtxt .cur{background:rgba(217,179,108,.3)}.rc{display:flex;gap:6px;margin-top:8px}.rc button{width:auto;margin:0;padding:12px 14px;font-size:18px}.rc button.pl{flex:1}.rc button.n{background:var(--cd);color:var(--tx);border:1px solid var(--bd)}.rs{display:flex;gap:10px;align-items:center;margin-top:8px}.rs input{margin:0;padding:0}.rs select{width:auto;margin:0;padding:8px}.bi{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 0;border-top:1px solid var(--bd)}
+body{padding-bottom:84px}body[data-tab=today] [data-t]:not([data-t=today]),body[data-tab=thoughts] [data-t]:not([data-t=thoughts]),body[data-tab=books] [data-t]:not([data-t=books]),body[data-tab=diary] [data-t]:not([data-t=diary]){display:none!important}nav{position:fixed;left:0;right:0;bottom:0;display:flex;background:var(--cd);border-top:1px solid var(--bd);z-index:10;max-width:640px;margin:auto;padding-bottom:env(safe-area-inset-bottom)}nav button{flex:1;background:none;color:var(--sub);border-radius:0;margin:0;padding:8px 2px;font-size:20px;display:flex;flex-direction:column;align-items:center;gap:2px}nav button span{font-size:11px;font-weight:500}nav button.on{color:var(--gold)}#toast{bottom:92px}.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+</style>
+</head>
+<body>
+<div class="band"></div>
+<header><h1 id="t_title"></h1><div class="hr"><button class="pill" id="langb"></button><button class="pill rd" id="themeb"></button></div></header>
+<div class="sub" id="meta"></div>
+<button id="inst"></button>
+<div class="qd" data-t="today"><small id="t_day"></small><div id="dq"></div></div>
+
+<div class="box" data-t="today">
+ <h3 id="t_al"></h3><div class="sub" id="t_ald" style="margin-bottom:8px"></div>
+ <div class="ar"><input type="time" id="atime"><button id="abtn"></button></div>
+ <div class="sub" id="ast" style="margin-top:6px"></div>
+ <button class="tb" id="ical" style="width:100%;margin-top:10px"></button>
+</div>
+
+<div class="box" data-t="diary">
+ <h3 id="t_di"></h3><div class="sub" id="t_did"></div>
+ <div class="dots" id="dstrip"></div><div class="sub" id="dstat"></div>
+ <div class="sub" id="dins" style="margin-top:6px;color:var(--ac)"></div>
+ <div class="sub" id="t_dtg" style="margin-top:10px"></div><div class="tags" id="dtags"></div>
+ <input type="text" id="dnote" style="margin-top:10px">
+ <div class="ar"><button id="dok"></button><button id="dbad" class="off"></button></div>
+</div>
+<div class="box" id="rev" data-t="today">
+ <div class="qh"><span id="t_rev"></span><span id="rcnt"></span></div>
+ <div id="rq"></div><div id="rans" style="display:none"></div>
+ <button id="rshow"></button>
+ <div class="ar" id="rbtns" style="display:none"><button id="rok"></button><button id="rno" class="off"></button></div>
+</div>
+<div class="box" id="lib" data-t="books">
+ <h3 id="t_lib"></h3><div class="sub" id="t_libd" style="margin-bottom:8px"></div>
+ <div id="blist"></div>
+ <button class="tb" id="badd" style="width:100%;margin-top:10px"></button>
+ <input type="file" id="bfile" accept=".txt,text/plain" style="display:none">
+ <button class="tb" id="bpb" style="width:100%;margin-top:8px"></button>
+ <div id="bpaste" hidden><input type="text" id="bpt" style="margin-top:10px"><textarea id="bpx" rows="6"></textarea><button id="bps"></button></div>
+ <div class="sub" id="t_bs" style="margin-top:14px"></div>
+ <input type="text" id="bsq" style="margin-top:6px">
+ <div class="row" style="margin:0"><button class="tb" data-s="w">Wikisource</button><button class="tb" data-s="g">Gutenberg</button></div>
+ <input type="text" id="bsu" style="margin-top:14px">
+ <button class="tb" id="bsg" style="width:100%"></button>
+</div>
+<div class="box qz" id="quiz" data-t="today">
+ <div class="qh"><span id="t_quiz"></span><span id="sc"></span></div>
+ <div id="qq"></div><div id="qo"></div>
+</div>
+
+<input type="text" id="q" data-t="thoughts">
+<div id="chips" data-t="thoughts"></div>
+<div class="bk" data-t="thoughts"><button id="exp"></button><button id="imp"></button><input type="file" id="file" accept=".json" style="display:none"></div>
+
+<div class="box nw" id="form" data-t="thoughts">
+ <h3 id="t_add"></h3>
+ <input type="text" id="title"><input type="text" id="author">
+ <textarea id="advice" rows="4"></textarea>
+ <select id="cat"></select>
+ <button id="save"></button>
+</div>
+
+<h2 data-t="thoughts" id="t_list" style="font-size:16px;color:var(--sub)"></h2>
+<div id="list" data-t="thoughts"></div>
+<div id="rd" hidden>
+ <div class="rh"><b id="rtitle"></b><button class="pill rd" id="rclose">✕</button></div>
+ <div id="rtxt"></div>
+ <div class="rs"><input type="range" id="rseek" min="0" value="0"><span class="sub" id="rpct"></span><select id="rrate"><option>0.8</option><option selected>1</option><option>1.2</option><option>1.5</option><option>1.8</option></select></div>
+ <div class="rc"><button class="n" id="rpp">⏪</button><button class="n" id="rprev">⏮</button><button class="pl" id="rplay">▶</button><button class="n" id="rnext">⏭</button><button class="n" id="rpn">⏩</button><button class="n" id="rsave">💾</button></div>
+</div>
+<nav id="nav"><button data-tab="today">🏠<span></span></button><button data-tab="thoughts">📜<span></span></button><button data-tab="books">📚<span></span></button><button data-tab="diary">🤫<span></span></button></nav>
+<div id="toast"></div>
+
+<script>
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const CATS=['Общие','Тишина','Психология','Стратегия','Философия','Личное'];
+const L={
+ru:{title:'Кодекс Мудрости',bsg:'⬇️ Скачать по ссылке',bsu:'Ссылка с ru.wikisource.org',bad2:'Не получилось. Нужен интернет; или вставь текст вручную',bpb:'📋 Вставить текст',bpt:'Название книги',bpx:'Вставь сюда текст книги...',bps:'💾 Сохранить в библиотеку',t_bs:'Найти книгу в интернете:',bsq:'Например: Марк Аврелий Размышления',n1:'Сегодня',n2:'Мысли',n3:'Книги',n4:'Дневник',dtg:'Что повлияло?',gl:{tired:'Усталость',rush:'Спешка',argue:'Спор',anger:'Обида',bored:'Скука'},dins:'Срывов за 30 дней: {n}.',dtop:'Чаще всего:',bkn:'сделай бэкап',saved2:'Сохранено в Мысли ✅',lib:'📚 Библиотека',libd:'Загрузи книгу в формате .txt — читай сам или слушай. Хранится офлайн.',badd:'➕ Добавить книгу (.txt)',bempty:'Пока пусто',dt:'🤫 Дневник тишины',dd:'Как сегодня с речью? Отметь вечером.',dok:'✅ Промолчал где надо',dbad:'💬 Сорвался',dnote:'Заметка (необязательно)',dstat:'За 14 дней тихих: {n}',dgood:'Записано. Тишина — сила 🤫',dslip:'Записано. Завтра новый день',rt:'🧠 Повторение',rshow:'Показать мысль',rok:'😊 Помню',rno:'🔁 Забыл',rdone:'На сегодня всё повторено ✅',rleft:'Осталось: ',ical:'📅 Ежедневно в календарь',saved:'Картинка сохранена',day:'💡 Мысль дня',quiz:'🎮 Кто автор мысли?',score:'Очки: ',search:'🔍 Поиск...',all:'🌐 Все',fav:'⭐ Избранное',add:'🚀 Новая мысль',topic:'Тема...',author:'Автор (для викторины)',text:'Текст мысли...',save:'💾 Сохранить',upd:'💾 Обновить',exp:'📥 Бэкап',imp:'📤 Загрузить',list:'📖 База знаний',empty:'Ничего не найдено',delQ:'Удалить?',copied:'Скопировано',al:'⏰ Будильник тишины',ald:'Напомнит замолчать и подумать. Работает, пока приложение открыто.',on:'Включить',off:'Выключить',st0:'Выключен',st1:'Активен на ',pick:'Выбери время',msg:'Время паузы! Меньше слов, больше мысли 🤫',right:'🎉 Верно! +10',wrong:'❌ Правильно: ',bad:'Файл не подходит',ok:'Загружено',offl:'📴 Офлайн',onl:'🟢 Онлайн',inst:'📲 Установить приложение',fill:'Заполни тему и текст',replace:'Заменить текущую базу?',
+cats:{Общие:'🌐 Общие',Тишина:'🤫 Тишина и речь',Психология:'💡 Психология',Стратегия:'⚔️ Стратегия',Философия:'🏛 Философия',Личное:'✍️ Личное'}},
+tm:{title:'Akyl-paparas Kodeksi',bsg:'⬇️ Salgydan ýükle',bsu:'ru.wikisource.org salgysy',bad2:'Bolmady. Internet gerek; ýa-da teksti elde goý',bpb:'📋 Tekst goý',bpt:'Kitabyň ady',bpx:'Kitabyň tekstini şu ýere goý...',bps:'💾 Kitaphana sakla',t_bs:'Internetde kitap gözle:',bsq:'Mysal: Magtymguly',n1:'Şu gün',n2:'Pikirler',n3:'Kitaplar',n4:'Gündelik',dtg:'Näme täsir etdi?',gl:{tired:'Ýadawlyk',rush:'Howlukmaçlyk',argue:'Jedel',anger:'Gynanç',bored:'Içigeçme'},dins:'30 günde çydamadyk: {n}.',dtop:'Köplenç:',bkn:'bekap et',saved2:'Pikirlere saklandy ✅',lib:'📚 Kitaphana',libd:'.txt kitap ýükle — özüň oka ýa-da diňle. Oflaýn saklanýar.',badd:'➕ Kitap goş (.txt)',bempty:'Entek boş',dt:'🤫 Dymmak gündeligi',dd:'Bu gün sözüň nähili boldy? Agşam belle.',dok:'✅ Dymmaly ýerinde dymdym',dbad:'💬 Çydamadym',dnote:'Bellik (hökman däl)',dstat:'14 günde dymanlar: {n}',dgood:'Ýazyldy. Dymmak — güýç 🤫',dslip:'Ýazyldy. Ertir täze gün',rt:'🧠 Gaýtalama',rshow:'Pikiri görkez',rok:'😊 Ýadymda',rno:'🔁 Unutdym',rdone:'Şu gün hemmesi gaýtalandy ✅',rleft:'Galdy: ',ical:'📅 Her gün senenama',saved:'Surat saklandy',day:'💡 Günüň pikiri',quiz:'🎮 Pikiriň awtory kim?',score:'Upaý: ',search:'🔍 Gözleg...',all:'🌐 Hemmesi',fav:'⭐ Halanýanlarym',add:'🚀 Täze pikir',topic:'Tema...',author:'Awtor (wiktorina üçin)',text:'Pikiriň teksti...',save:'💾 Sakla',upd:'💾 Täzele',exp:'📥 Bekap',imp:'📤 Ýükle',list:'📖 Bilim bazasy',empty:'Hiç zat tapylmady',delQ:'Pozmalymy?',copied:'Göçürildi',al:'⏰ Dymmak budilnigi',ald:'Dymmagy we oýlanmagy ýatladýar. Programma açykka işleýär.',on:'Goş',off:'Öçür',st0:'Öçük',st1:'Işjeň: ',pick:'Wagt saýla',msg:'Duralga wagty! Az gürle, köp pikir et 🤫',right:'🎉 Dogry! +10',wrong:'❌ Dogrusy: ',bad:'Faýl ýaramaýar',ok:'Ýüklendi',offl:'📴 Oflaýn',onl:'🟢 Onlaýn',inst:'📲 Programmany gurnamak',fill:'Tema we teksti dolduryň',replace:'Häzirki bazany çalyşmalymy?',
+cats:{Общие:'🌐 Umumy',Тишина:'🤫 Dymmak we söz',Психология:'💡 Psihologiýa',Стратегия:'⚔️ Strategiýa',Философия:'🏛 Pelsepe',Личное:'✍️ Şahsy'}}};
+const D={ru:[
+{title:'Контроль речи',author:'Юсуп',advice:'Слово — серебро, молчание — золото. Прежде чем сказать лишнее, спроси себя: улучшит ли это тишину?',category:'Тишина',fav:true},
+{title:'Восточная мудрость о языке',author:'Восточная мудрость',advice:'Мудрый сначала думает и потом говорит, а глупец сначала говорит и лишь потом думает, почему сболтнул лишнего.',category:'Тишина',fav:true},
+{title:'Антихрупкость',author:'Нассим Талеб',advice:'Некоторые вещи от беспорядка портятся, но есть те, что от ударов и хаоса становятся только крепче.',category:'Общие'},
+{title:'Психологическое айкидо',author:'Юсуп',advice:'Когда тебя критикуют без повода, ответь: «Спасибо за заботу о моём профессионализме». Это сбивает агрессора.',category:'Психология',fav:true},
+{title:'28-й Закон Власти',author:'Роберт Грин',advice:'Сомнения порождают слабость, а смелость сглаживает ошибки. Спокойная уверенность вызывает уважение.',category:'Стратегия',fav:true},
+{title:'Стратегия тишины',author:'Сунь-цзы',advice:'Настоящий мастер не кричит о победах до их завершения.',category:'Стратегия'}],
+tm:[
+{title:'Dymmak we söz',author:'Ýusup',advice:'Söz — kümüş, dymmak — altyn. Köp gürlemekden haýyr ýok, her sözüň manysy bolmaly.',category:'Тишина',fav:true},
+{title:'Berklik',author:'Nassim Taleb',advice:'Käbir zatlar tertipsizlikden zaýalanýar, ýöne käbirleri urgulardan has hem berkär.',category:'Общие'},
+{title:'Akyl we dil',author:'Gündogar paýhasy',advice:'Akylly ilki oýlanýar, soň gürleýär; samsyk bolsa ilki gürleýär, soň oýlanýar.',category:'Тишина'}]};
+
+let lang=localStorage.getItem('kodeks_lang'),cat='all',cards=[],score=+localStorage.getItem('kodeks_score')||0,qa='',editId=null,alarm=localStorage.getItem('kodeks_alarm')||'';if(!L[lang])lang='ru';
+const T=()=>L[lang]||L.ru;
+const key=()=>'myMentors_'+lang;
+
+function load(){
+ let c;try{c=JSON.parse(localStorage.getItem(key()))}catch(e){}
+ if(!Array.isArray(c)||!c.length)c=D[lang];
+ cards=clean(c);save();
+}
+function clean(c){
+ let n=Date.now();
+ return c.filter(x=>x&&x.title&&x.advice).map((x,i)=>({id:x.id||n+i,title:String(x.title),author:x.author?String(x.author):'',advice:String(x.advice),category:CATS.includes(x.category)?x.category:'Общие',fav:!!x.fav,lv:Math.min(5,Math.max(0,+x.lv||0)),seen:+x.seen||0}));
+}
+function save(){try{localStorage.setItem(key(),JSON.stringify(cards))}catch(e){toast('⚠️ Storage full')}}
+function toast(m){const t=$('toast');t.textContent=m;t.classList.add('s');clearTimeout(toast.h);toast.h=setTimeout(()=>t.classList.remove('s'),2200)}
+function copy(s){(navigator.clipboard?navigator.clipboard.writeText(s):Promise.reject()).then(()=>toast(T().copied)).catch(()=>toast('⚠️'))}
+function speak(s){if(!('speechSynthesis' in window))return copy(s);speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(s);u.lang=lang==='ru'?'ru-RU':'tr-TR';u.rate=.95;speechSynthesis.speak(u)}
+
+function ui(){
+ const t=T();
+ $('t_title').textContent=t.title;$('t_day').textContent=t.day;$('t_quiz').textContent=t.quiz;$('sc').textContent=t.score+score;
+ $('q').placeholder=t.search;$('exp').textContent=t.exp;$('imp').textContent=t.imp;$('t_add').textContent=t.add;
+ $('title').placeholder=t.topic;$('author').placeholder=t.author;$('advice').placeholder=t.text;
+ $('save').textContent=editId?t.upd:t.save;$('t_list').textContent=t.list;
+ $('t_al').textContent=t.al;$('t_ald').textContent=t.ald;$('inst').textContent=t.inst;
+ $('cat').innerHTML=CATS.map(c=>`<option value="${c}">${t.cats[c]}</option>`).join('');
+ $('chips').innerHTML=[['all',t.all],['fav',t.fav],...CATS.map(c=>[c,t.cats[c]])].map(([k,v])=>`<button class="chip${k===cat?' on':''}" data-c="${k}">${v}</button>`).join('');
+ alarmUI();net();uiX();diaryUI();rv();
+}
+function net(){const lb=+localStorage.getItem('kodeks_bk')||0;$('meta').textContent='🔥 '+st+'  ·  '+(navigator.onLine?T().onl:T().offl)+(lb&&Date.now()-lb>6048e5?'  ·  💾 '+T().bkn:'')}
+if(!localStorage.getItem('kodeks_bk'))localStorage.setItem('kodeks_bk',Date.now());
+addEventListener('online',net);addEventListener('offline',net);
+
+function render(){
+ const q=$('q').value.toLowerCase(),t=T();
+ const f=cards.filter(c=>(c.title+c.advice+c.author).toLowerCase().includes(q)&&(cat==='all'||(cat==='fav'?c.fav:c.category===cat)));
+ $('list').innerHTML=f.map(c=>`<div class="card" data-id="${c.id}"><button class="fav" data-a="fav">${c.fav?'⭐':'☆'}</button><span class="tag">${esc(t.cats[c.category])}</span><h3>📜 ${esc(c.title)}</h3><p>${esc(c.advice)}</p>${c.author?`<div class="au">— ${esc(c.author)}</div>`:''}<div class="row"><button class="tb sp" data-a="speak">🔊</button><button class="tb" data-a="copy">📋</button><button class="tb sh" data-a="share">📤</button><button class="tb" data-a="img">🖼</button><button class="tb ed" data-a="edit">✏️</button><button class="tb del" data-a="del">🗑</button></div></div>`).join('')||`<p class="sub">${t.empty}</p>`;
+}
+$('list').onclick=e=>{
+ const b=e.target.closest('button[data-a]');if(!b)return;
+ const c=cards.find(x=>x.id==b.closest('.card').dataset.id);if(!c)return;
+ const a=b.dataset.a,txt=c.title+'\n\n'+c.advice+(c.author?'\n— '+c.author:'');
+ if(a==='fav'){c.fav=!c.fav;save();render()}
+ else if(a==='del'){if(confirm(T().delQ)){cards=cards.filter(x=>x!==c);save();render();quiz();rv()}}
+ else if(a==='edit'){editId=c.id;$('title').value=c.title;$('author').value=c.author;$('advice').value=c.advice;$('cat').value=c.category;$('save').textContent=T().upd;$('form').scrollIntoView({behavior:'smooth'})}
+ else if(a==='img')quoteImg(c);
+ else if(a==='copy')copy(txt);
+ else if(a==='share')navigator.share?navigator.share({title:c.title,text:txt}).catch(()=>{}):copy(txt);
+ else speak(c.advice);
+};
+$('chips').onclick=e=>{const b=e.target.closest('.chip');if(!b)return;cat=b.dataset.c;document.querySelectorAll('#chips .chip').forEach(x=>x.classList.toggle('on',x===b));render()};
+$('q').oninput=render;
+
+$('save').onclick=()=>{
+ const title=$('title').value.trim(),advice=$('advice').value.trim();
+ if(!title||!advice)return toast(T().fill);
+ const o={title,author:$('author').value.trim(),advice,category:$('cat').value};
+ if(editId){const c=cards.find(x=>x.id===editId);if(c)Object.assign(c,o);editId=null}
+ else cards.unshift({id:Date.now(),fav:false,lv:0,seen:0,...o});
+ save();['title','author','advice'].forEach(i=>$(i).value='');$('save').textContent=T().save;render();quiz();dayQ();rv();
+};
+
+function dayQ(){
+ if(!cards.length)return;
+ const c=cards[Math.floor(Date.now()/864e5)%cards.length];
+ $('dq').innerHTML='“'+esc(c.advice)+'”<div class="by">— '+esc(c.author||c.title)+'</div>';
+}
+function quiz(){
+ const pool=cards.filter(c=>c.author),au=[...new Set(pool.map(c=>c.author))];
+ $('quiz').style.display=au.length<3?'none':'';if(au.length<3)return;
+ const c=pool[Math.random()*pool.length|0];qa=c.author;
+ $('qq').textContent=c.advice;
+ const o=[qa,...au.filter(a=>a!==qa).sort(()=>Math.random()-.5).slice(0,3)].sort(()=>Math.random()-.5);
+ $('qo').innerHTML=o.map(a=>`<button class="qb" data-v="${esc(a)}">${esc(a)}</button>`).join('');
+}
+$('qo').onclick=e=>{
+ const b=e.target.closest('.qb');if(!b)return;
+ if(b.dataset.v===qa){score+=10;localStorage.setItem('kodeks_score',score);toast(T().right)}else toast(T().wrong+qa);
+ $('sc').textContent=T().score+score;quiz();
+};
+
+function alarmUI(){
+ const t=T();$('abtn').textContent=alarm?t.off:t.on;$('abtn').classList.toggle('off',!!alarm);
+ $('ast').textContent=alarm?t.st1+alarm+' ⏰':t.st0;$('ast').style.color=alarm?'var(--gold)':'var(--sub)';
+ if(alarm)$('atime').value=alarm;
+}
+$('abtn').onclick=()=>{
+ if(alarm)alarm='';else{if(!$('atime').value)return toast(T().pick);alarm=$('atime').value}
+ localStorage.setItem('kodeks_alarm',alarm);alarmUI();
+};
+setInterval(()=>{
+ if(!alarm)return;
+ const d=new Date(),n=String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');
+ if(n!==alarm)return;
+ alarm='';localStorage.setItem('kodeks_alarm','');alarmUI();
+ navigator.vibrate&&navigator.vibrate([300,150,300]);
+ speak(T().msg);setTimeout(()=>alert(T().msg),300);
+},1000);
+
+$('exp').onclick=async()=>{
+ const b=new Blob([JSON.stringify({v:2,cards,diary})],{type:'application/json'}),f=new File([b],'codex_'+lang+'.json',{type:'application/json'}),ok=()=>{localStorage.setItem('kodeks_bk',Date.now());net()};
+ if(navigator.canShare&&navigator.canShare({files:[f]})){try{await navigator.share({files:[f]});ok();return}catch(e){if(e.name==='AbortError')return}}
+ const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=f.name;a.click();ok();setTimeout(()=>URL.revokeObjectURL(a.href),5000);
+};
+$('imp').onclick=()=>$('file').click();
+$('file').onchange=e=>{
+ const f=e.target.files[0];if(!f)return;
+ const r=new FileReader();
+ r.onload=()=>{
+  try{const j=JSON.parse(r.result),c=clean(Array.isArray(j)?j:j.cards);if(!c.length)throw 0;
+   if(!confirm(T().replace))return;
+   cards=c;save();if(j.diary&&typeof j.diary==='object'&&!Array.isArray(j.diary)){diary=j.diary;saveD()}render();quiz();dayQ();diaryUI();rv();toast(T().ok)}catch(x){toast(T().bad)}
+ };
+ r.readAsText(f);e.target.value='';
+};
+
+function setTheme(l){document.body.classList.toggle('light',l);$('themeb').textContent=l?'🌙':'☀️';document.querySelector('meta[name=theme-color]').content=l?'#f3ecdf':'#16110f'}
+$('themeb').onclick=()=>{const l=!document.body.classList.contains('light');localStorage.setItem('kodeks_theme',l?'light':'dark');setTheme(l)};
+const th=localStorage.getItem('kodeks_theme');setTheme(th?th==='light':matchMedia('(prefers-color-scheme: light)').matches);
+let st=+localStorage.getItem('kodeks_streak')||0;
+{const last=localStorage.getItem('kodeks_last'),td=new Date().toDateString(),y=new Date(Date.now()-864e5).toDateString();
+if(last!==td){st=last===y?st+1:1;localStorage.setItem('kodeks_streak',st);localStorage.setItem('kodeks_last',td)}}
+$('langb').textContent=lang.toUpperCase();
+$('langb').onclick=()=>{lang=lang==='ru'?'tm':'ru';$('langb').textContent=lang.toUpperCase();localStorage.setItem('kodeks_lang',lang);cat='all';editId=null;load();ui();render();quiz();dayQ()};
+
+let dp;
+addEventListener('beforeinstallprompt',e=>{e.preventDefault();dp=e;$('inst').style.display='block'});
+$('inst').onclick=async()=>{if(!dp)return;dp.prompt();await dp.userChoice;dp=null;$('inst').style.display='none'};
+addEventListener('appinstalled',()=>$('inst').style.display='none');
+
+if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+
+let diary={};try{diary=JSON.parse(localStorage.getItem('kodeks_diary'))||{}}catch(e){}
+const saveD=()=>localStorage.setItem('kodeks_diary',JSON.stringify(diary));
+const p2=n=>String(n).padStart(2,'0'),dk=d=>d.getFullYear()+'-'+p2(d.getMonth()+1)+'-'+p2(d.getDate());
+function uiX(){const t=T();$('t_di').textContent=t.dt;$('t_did').textContent=t.dd;$('dok').textContent=t.dok;$('dbad').textContent=t.dbad;$('dnote').placeholder=t.dnote;$('t_rev').textContent=t.rt;$('rshow').textContent=t.rshow;$('rok').textContent=t.rok;$('rno').textContent=t.rno;$('ical').textContent=t.ical;$('t_lib').textContent=t.lib;$('t_libd').textContent=t.libd;$('badd').textContent=t.badd;bookUI();document.querySelectorAll('#nav span').forEach((x,i)=>x.textContent=t['n'+(i+1)]);$('t_dtg').textContent=t.dtg;$('bpb').textContent=t.bpb;$('bpt').placeholder=t.bpt;$('bpx').placeholder=t.bpx;$('bps').textContent=t.bps;$('t_bs').textContent=t.t_bs;$('bsq').placeholder=t.bsq;$('bsg').textContent=t.bsg;$('bsu').placeholder=t.bsu}
+let dsel=new Set();
+function tagsUI(){const g=T().gl;$('dtags').innerHTML=Object.keys(g).map(k=>`<button class="chip${dsel.has(k)?' on':''}" data-k="${k}">${g[k]}</button>`).join('')}
+$('dtags').onclick=e=>{const b=e.target.closest('[data-k]');if(!b)return;const k=b.dataset.k;dsel.has(k)?dsel.delete(k):dsel.add(k);tagsUI()};
+function diaryUI(){
+ let ok=0,h='';
+ for(let i=13;i>=0;i--){const e=diary[dk(new Date(Date.now()-i*864e5))];if(e&&e.r)ok++;h+='<i class="dot'+(e?(e.r?' g':' r'):'')+(i?'':' td')+'"></i>'}
+ $('dstrip').innerHTML=h;$('dstat').textContent=T().dstat.replace('{n}',ok);
+ const e=diary[dk(new Date())];$('dnote').value=e&&e.n?e.n:'';dsel=new Set(e&&e.g?e.g:[]);tagsUI();
+ const cnt={};let sl=0;
+ for(let i=0;i<30;i++){const x=diary[dk(new Date(Date.now()-i*864e5))];if(x&&!x.r){sl++;(x.g||[]).forEach(k=>cnt[k]=(cnt[k]||0)+1)}}
+ const top=Object.entries(cnt).sort((a,b)=>b[1]-a[1]).slice(0,3).map(([k,v])=>(T().gl[k]||k)+' ('+v+')').join(', ');
+ $('dins').textContent=sl?T().dins.replace('{n}',sl)+(top?' '+T().dtop+' '+top:''):'';
+}
+function mark(r){diary[dk(new Date())]={r,n:$('dnote').value.trim(),g:[...dsel]};saveD();diaryUI();toast(r?T().dgood:T().dslip)}
+$('dok').onclick=()=>mark(1);$('dbad').onclick=()=>mark(0);
+
+const IV=[0,1,3,7,14,30];let rc=null;
+const due=c=>c.seen+IV[c.lv]*864e5;
+function rv(){
+ const n=Date.now(),d=cards.filter(c=>due(c)<=n).sort((a,b)=>due(a)-due(b));
+ rc=d[0]||null;
+ $('rcnt').textContent=T().rleft+d.length;$('rq').textContent=rc?rc.title:T().rdone;
+ $('rshow').style.display=rc?'block':'none';$('rans').style.display='none';$('rbtns').style.display='none';
+}
+$('rshow').onclick=()=>{if(!rc)return;$('rans').textContent=rc.advice+(rc.author?'\n— '+rc.author:'');$('rans').style.display='block';$('rshow').style.display='none';$('rbtns').style.display='flex'};
+$('rok').onclick=()=>{if(!rc)return;rc.lv=Math.min(rc.lv+1,5);rc.seen=Date.now();save();rv()};
+$('rno').onclick=()=>{if(!rc)return;rc.lv=0;rc.seen=Date.now();save();rv()};
+
+$('ical').onclick=()=>{
+ const v=$('atime').value;if(!v)return toast(T().pick);
+ const [h,m]=v.split(':'),d=new Date();
+ const x=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Kodeks//RU','BEGIN:VEVENT','UID:kodeks-'+Date.now()+'@kodeks','DTSTAMP:'+new Date().toISOString().replace(/[-:]|\.\d+/g,''),'DTSTART:'+d.getFullYear()+p2(d.getMonth()+1)+p2(d.getDate())+'T'+h+m+'00','DURATION:PT10M','RRULE:FREQ=DAILY','SUMMARY:'+T().msg.replace(/[,;]/g,' '),'BEGIN:VALARM','ACTION:DISPLAY','DESCRIPTION:Kodeks','TRIGGER:PT0M','END:VALARM','END:VEVENT','END:VCALENDAR'].join('\r\n');
+ const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([x],{type:'text/calendar'}));a.download='kodeks.ics';a.click();
+};
+
+function wrap(g,t,w){const o=[];let l='';for(const k of t.split(/\s+/)){const x=l?l+' '+k:k;if(g.measureText(x).width>w&&l){o.push(l);l=k}else l=x}if(l)o.push(l);return o}
+function quoteImg(c){
+ const W=1080,H=1920,cv=document.createElement('canvas');cv.width=W;cv.height=H;const g=cv.getContext('2d');
+ g.fillStyle='#16110f';g.fillRect(0,0,W,H);g.fillStyle='#a8322a';
+ for(const y of [60,H-100])for(let x=30;x<W+40;x+=60){g.beginPath();g.moveTo(x,y);g.lineTo(x+20,y+20);g.lineTo(x,y+40);g.lineTo(x-20,y+20);g.fill()}
+ const txt='“'+c.advice+'”';let fs=76,ln;
+ for(;fs>34;fs-=4){g.font='italic '+fs+'px Georgia,serif';ln=wrap(g,txt,W-200);if(ln.length*fs*1.4<H-700)break}
+ g.fillStyle='#f1e8d8';g.textAlign='center';
+ let y=(H-ln.length*fs*1.4)/2;ln.forEach(l=>g.fillText(l,W/2,y+=fs*1.4));
+ g.font='40px sans-serif';g.fillStyle='#d9b36c';g.fillText('— '+(c.author||c.title),W/2,y+110);
+ g.font='30px sans-serif';g.fillStyle='#a39384';g.fillText(T().title,W/2,H-170);
+ cv.toBlob(async b=>{
+  const f=new File([b],'mysl.png',{type:'image/png'});
+  if(navigator.canShare&&navigator.canShare({files:[f]})){try{await navigator.share({files:[f]});return}catch(e){if(e.name==='AbortError')return}}
+  const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='mysl.png';a.click();toast(T().saved);
+ },'image/png');
+}
+
+const idb=()=>new Promise((ok,no)=>{const r=indexedDB.open('kodeks',1);r.onupgradeneeded=()=>r.result.createObjectStore('t');r.onsuccess=()=>ok(r.result);r.onerror=no});
+const idbSet=async(k,v)=>{const d=await idb();return new Promise((ok,no)=>{const t=d.transaction('t','readwrite');t.objectStore('t').put(v,k);t.oncomplete=ok;t.onerror=no})};
+const idbGet=async k=>{const d=await idb();return new Promise((ok,no)=>{const q=d.transaction('t').objectStore('t').get(k);q.onsuccess=()=>ok(q.result);q.onerror=no})};
+const idbDel=async k=>{const d=await idb();return new Promise(ok=>{const t=d.transaction('t','readwrite');t.objectStore('t').delete(k);t.oncomplete=ok})};
+let books=[];try{books=JSON.parse(localStorage.getItem('kodeks_books'))||[]}catch(e){}
+const saveB=()=>localStorage.setItem('kodeks_books',JSON.stringify(books));
+const detect=t=>{const x=t.slice(0,3000),cy=(x.match(/[а-яё]/gi)||[]).length;return cy>x.length*.3?'ru-RU':/[ýňžş]/i.test(x)?'tr-TR':'en-US'};
+function split(t){const o=[];t.split(/\n+/).forEach(p=>{p=p.trim();if(!p)return;(p.match(/[^.!?…]+[.!?…]+["»”)]*\s*|[^.!?…]+$/g)||[p]).forEach(s=>{s=s.trim();while(s.length>260){let k=s.lastIndexOf(' ',260);if(k<80)k=260;o.push(s.slice(0,k)+' ');s=s.slice(k).trim()}if(s)o.push(s+' ')});o[o.length-1]=o[o.length-1].trim()+'\n\n'});return o}
+function bookUI(){$('blist').innerHTML=books.map(b=>`<div class="bi" data-id="${b.id}"><div><b>${esc(b.title)}</b><div class="sub">${Math.round(b.pos/Math.max(b.n,1)*100)}% · ${b.lang}</div></div><div class="row" style="margin:0"><button class="tb" data-a="open">▶</button><button class="tb del" data-a="bdel">🗑</button></div></div>`).join('')||`<div class="sub">${T().bempty}</div>`}
+$('badd').onclick=()=>$('bfile').click();
+$('bfile').onchange=async e=>{
+ const f=e.target.files[0];e.target.value='';if(!f)return;
+ try{const buf=await f.arrayBuffer();let t;try{t=new TextDecoder('utf-8',{fatal:true}).decode(buf)}catch(x){t=new TextDecoder('windows-1251').decode(buf)}
+  t=t.replace(/\r/g,'').trim();if(t.length<50)throw 0;
+  const id=Date.now();await idbSet(id,t);books.unshift({id,title:f.name.replace(/\.[^.]+$/,''),lang:detect(t),n:split(t).length,pos:0});saveB();bookUI();toast(T().ok)}catch(x){toast(T().bad)}
+};
+$('blist').onclick=e=>{
+ const b=e.target.closest('button[data-a]');if(!b)return;const id=+b.closest('.bi').dataset.id;
+ if(b.dataset.a==='open')openBook(id);else if(confirm(T().delQ)){books=books.filter(x=>x.id!==id);saveB();idbDel(id);bookUI()}
+};
+$('bpb').onclick=()=>{$('bpaste').hidden=!$('bpaste').hidden};
+$('bps').onclick=async()=>{
+ const t=$('bpx').value.replace(/\r/g,'').trim(),n=$('bpt').value.trim();if(t.length<50||!n)return toast(T().fill);
+ try{const id=Date.now();await idbSet(id,t);books.unshift({id,title:n,lang:detect(t),n:split(t).length,pos:0});saveB();bookUI();$('bpx').value='';$('bpt').value='';$('bpaste').hidden=true;toast(T().ok)}catch(e){toast(T().bad)}
+};
+$('lib').addEventListener('click',e=>{
+ const b=e.target.closest('[data-s]');if(!b)return;const v=$('bsq').value.trim();if(!v)return toast(T().bsq);const q=encodeURIComponent(v);
+ window.open(b.dataset.s==='w'?'https://ru.wikisource.org/w/index.php?search='+q:'https://www.gutenberg.org/ebooks/search/?query='+q,'_blank');
+});
+$('bsg').onclick=async()=>{
+ try{
+  const u=new URL($('bsu').value.trim());if(!/\.wikisource\.org$/.test(u.hostname))throw 0;
+  const title=u.searchParams.get('title')||decodeURIComponent(u.pathname.replace(/^\/wiki\//,''));
+  const j=await(await fetch(u.origin+'/w/api.php?action=parse&prop=text&format=json&origin=*&redirects=1&page='+encodeURIComponent(title))).json();
+  if(!j.parse)throw 0;
+  const d=new DOMParser().parseFromString(j.parse.text['*'],'text/html');
+  d.querySelectorAll('style,script,table,.mw-editsection,sup.reference,.noprint,.ws-noexport').forEach(x=>x.remove());
+  d.querySelectorAll('br').forEach(x=>x.replaceWith('\n'));
+  d.querySelectorAll('p,div,h1,h2,h3,h4,li,dd').forEach(x=>x.append('\n'));
+  const t=d.body.textContent.replace(/\n{3,}/g,'\n\n').trim();if(t.length<200)throw 0;
+  const id=Date.now();await idbSet(id,t);books.unshift({id,title:j.parse.title,lang:detect(t),n:split(t).length,pos:0});saveB();bookUI();$('bsu').value='';toast(T().ok);
+ }catch(e){toast(T().bad2)}
+};
+let bk=null,ch=[],ci=0,pg=-1,playing=false,cur=null,rate=1,wl=null;const PG=10;
+async function openBook(id){
+ bk=books.find(b=>b.id===id);const t=await idbGet(id);if(!t)return toast(T().bad);
+ ch=split(t);bk.n=ch.length;ci=Math.min(bk.pos,ch.length-1);pg=-1;
+ $('rd').hidden=false;$('rtitle').textContent=bk.title;$('rseek').max=ch.length-1;showPage();
+}
+function showPage(){
+ const s=ci-ci%PG,r=$('rtxt');
+ if(s!==pg){pg=s;r.innerHTML=ch.slice(s,s+PG).map((c,j)=>`<span data-i="${s+j}">${esc(c)}</span>`).join('');r.scrollTop=0}
+ r.querySelectorAll('.cur').forEach(x=>x.classList.remove('cur'));
+ const e=r.querySelector('[data-i="'+ci+'"]');if(e){e.classList.add('cur');if(playing)e.scrollIntoView({block:'nearest'})}
+ $('rseek').value=ci;$('rpct').textContent=Math.round(ci/ch.length*100)+'%';$('rplay').textContent=playing?'⏸':'▶';
+}
+function say(){
+ speechSynthesis.cancel();if(!playing)return;
+ const u=new SpeechSynthesisUtterance(ch[ci].trim());u.lang=bk.lang;u.rate=rate;
+ u.onend=()=>{if(cur!==u||!playing)return;if(ci<ch.length-1){ci++;bk.pos=ci;saveB();showPage();say()}else{playing=false;showPage()}};
+ cur=u;speechSynthesis.speak(u);
+}
+function go(i){ci=Math.max(0,Math.min(ch.length-1,i));bk.pos=ci;saveB();showPage();if(playing)say()}
+async function lock(on){try{if(on)wl=await navigator.wakeLock.request('screen');else if(wl){wl.release();wl=null}}catch(e){}}
+$('rplay').onclick=()=>{if(!('speechSynthesis' in window))return toast('⚠️');playing=!playing;if(playing)say();else speechSynthesis.cancel();lock(playing);showPage()};
+$('rprev').onclick=()=>go(ci-1);$('rnext').onclick=()=>go(ci+1);
+$('rpp').onclick=()=>go(ci-ci%PG-PG);$('rpn').onclick=()=>go(ci-ci%PG+PG);
+$('rsave').onclick=()=>{const t=ch[ci].trim();cards.unshift({id:Date.now(),title:t.length>40?t.slice(0,38)+'…':t,author:bk.title,advice:t,category:'Общие',fav:false,lv:0,seen:0});save();render();rv();toast(T().saved2)};
+$('rseek').onchange=()=>go(+$('rseek').value);
+$('rrate').onchange=()=>{rate=+$('rrate').value;if(playing)say()};
+$('rtxt').onclick=e=>{const x=e.target.closest('[data-i]');if(x)go(+x.dataset.i)};
+$('rclose').onclick=()=>{playing=false;speechSynthesis.cancel();lock(false);$('rd').hidden=true;bookUI()};
+
+function setTab(t){document.body.dataset.tab=t;document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.tab===t));localStorage.setItem('kodeks_tab',t);scrollTo(0,0)}
+$('nav').onclick=e=>{const b=e.target.closest('button');if(b)setTab(b.dataset.tab)};
+{const t=localStorage.getItem('kodeks_tab');setTab(['today','thoughts','books','diary'].includes(t)?t:'today')}
+
+try{load();ui();render();quiz();dayQ()}catch(e){document.body.insertAdjacentHTML('afterbegin','<pre style="color:#f87171;white-space:pre-wrap">'+esc(e.message)+'</pre>')}
+</script>
+</body>
+</html>
