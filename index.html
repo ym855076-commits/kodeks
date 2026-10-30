@@ -9,43 +9,53 @@
 :root{--bg:#16110f;--cd:#211a17;--bd:#3a2f2a;--tx:#f1e8d8;--sub:#a39384;--ac:#e0705f;--red:#a8322a;--in:#2a211d;--gold:#d9b36c}
 .light{--bg:#f3ecdf;--cd:#fbf7ef;--bd:#ddd1bc;--tx:#2a1d18;--sub:#7a6a5c;--ac:#9e2a2b;--in:#efe6d6;--gold:#8f6218}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{font:15px/1.5 -apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--tx);margin:0 auto;padding:0 16px 80px;max-width:640px;transition:background .3s,color .3s}
+body{font:15px/1.5 -apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--tx);margin:0 auto;padding:0 16px 90px;max-width:640px;transition:background .3s,color .3s}
 .band{height:10px;margin:0 -16px;background:linear-gradient(45deg,transparent 42%,var(--red) 42% 58%,transparent 58%),linear-gradient(-45deg,transparent 42%,var(--red) 42% 58%,transparent 58%);background-size:10px 10px}
-header{display:flex;justify-content:space-between;align-items:center;padding:16px 0 8px}
+header{display:flex;justify-content:space-between;align-items:center;padding:18px 0 8px}
 h1{font:700 22px Georgia,serif;margin:0}
 .hr{display:flex;gap:8px}
-select,input,textarea{width:100%;padding:12px;margin:6px 0 12px;border:1px solid var(--bd);border-radius:12px;font:16px inherit;font-family:inherit;background:var(--in);color:var(--tx)}
-button{background:var(--red);color:#fff;border:0;padding:12px;width:100%;border-radius:12px;font-size:15px;font-weight:600;cursor:pointer;margin-bottom:8px}
-.pill{background:var(--cd);color:var(--tx);border:1px solid var(--bd);width:auto;margin:0;padding:0 12px;height:36px;border-radius:18px;font-size:13px;cursor:pointer}
-.pill.rd{width:36px;padding:0;font-size:16px}
+select,input,textarea{width:100%;padding:13px;margin:6px 0 12px;border:1px solid var(--bd);border-radius:14px;font:16px inherit;font-family:inherit;background:var(--in);color:var(--tx);transition:border-color .2s}
+select:focus,input:focus,textarea:focus{border-color:var(--gold);outline:none}
+button{background:var(--red);color:#fff;border:0;padding:13px;width:100%;border-radius:14px;font-size:15px;font-weight:600;cursor:pointer;margin-bottom:8px;transition:transform .1s,opacity .2s}
+button:active{transform:scale(0.98)}
+.pill{background:var(--cd);color:var(--tx);border:1px solid var(--bd);width:auto;margin:0;padding:0 14px;height:38px;border-radius:19px;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.pill.rd{width:38px;padding:0;font-size:16px}
 .sub{font-size:13px;color:var(--sub)}
-.box{background:var(--cd);padding:16px;border-radius:16px;margin-bottom:14px;border:1px solid var(--bd)}
+.box{background:var(--cd);padding:18px;border-radius:18px;margin-bottom:14px;border:1px solid var(--bd);box-shadow:0 4px 20px rgba(0,0,0,0.15)}
 .box h3{margin:0 0 8px;font-size:16px}
-#chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;margin-bottom:10px}
-.chip{background:transparent;color:var(--sub);border:1px solid var(--bd);padding:6px 14px;border-radius:20px;font-size:13px;white-space:nowrap;width:auto;margin:0;font-weight:500;cursor:pointer}
+#chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;margin-bottom:10px;scrollbar-width:none}
+#chips::-webkit-scrollbar{display:none}
+.chip{background:transparent;color:var(--sub);border:1px solid var(--bd);padding:7px 16px;border-radius:20px;font-size:13px;white-space:nowrap;width:auto;margin:0;font-weight:500;cursor:pointer;transition:all .2s}
 .chip.on{background:var(--tx);color:var(--bg);border-color:var(--tx)}
-.card{background:var(--cd);padding:18px;margin-bottom:12px;border-radius:16px;border:1px solid var(--bd);position:relative}
+.card{background:var(--cd);padding:18px;margin-bottom:12px;border-radius:18px;border:1px solid var(--bd);position:relative;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
 .card h3{margin:0 0 8px;font:700 17px Georgia,serif;padding-right:30px}
 .card p{margin:0;font:15px/1.6 Georgia,serif;white-space:pre-line}
-.au{font-size:13px;color:var(--gold);margin-top:8px;cursor:pointer;display:inline-block}
+.au{font-size:13px;color:var(--gold);margin-top:10px;cursor:pointer;display:inline-block;font-weight:500}
 .au:hover{text-decoration:underline}
-.tag{display:inline-block;color:var(--gold);font-size:12px;font-weight:600;margin-bottom:6px}
+.tag{display:inline-block;color:var(--gold);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px}
 .fav{position:absolute;top:14px;right:14px;background:none;width:auto;font-size:20px;padding:0;margin:0;cursor:pointer}
-.row{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
-.tb{background:transparent;border:1px solid var(--bd);color:var(--tx);margin:0;padding:6px 12px;font-size:14px;width:auto;border-radius:8px;cursor:pointer}
-.tb.del{color:var(--ac)}
-.qd{background:var(--in);border-left:3px solid var(--gold);padding:12px 14px;border-radius:0 12px 12px 0;margin-bottom:14px}
+.row{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.tb{background:var(--in);border:1px solid var(--bd);color:var(--tx);margin:0;padding:8px 14px;font-size:13px;width:auto;border-radius:10px;cursor:pointer;font-weight:500}
+.tb.del{color:var(--ac);border-color:rgba(224,112,95,0.3)}
+.qd{background:var(--in);border-left:3px solid var(--gold);padding:14px 16px;border-radius:0 14px 14px 0;margin-bottom:14px}
 .qd small{color:var(--gold);font-weight:600;display:block;margin-bottom:4px}
 .qd div{font:italic 15px Georgia,serif}
-nav{position:fixed;left:0;right:0;bottom:0;display:flex;background:var(--cd);border-top:1px solid var(--bd);z-index:10;max-width:640px;margin:auto;padding:8px 0 env(safe-area-inset-bottom)}
-nav button{flex:1;background:none;color:var(--sub);border-radius:0;margin:0;padding:6px;font-size:16px;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer}
-nav button span{font-size:11px;font-weight:500}
-nav button.on{color:var(--gold)}
+
+/* Модальное окно чтения книги */
+#reader-modal{position:fixed;inset:0;background:var(--bg);z-index:50;display:flex;flex-direction:column;padding:16px;max-width:640px;margin:auto}
+#reader-modal[hidden]{display:none}
+.rm-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;border-bottom:1px solid var(--bd);padding-bottom:10px}
+.rm-content{flex:1;overflow-y:auto;font:17px/1.7 Georgia,serif;white-space:pre-wrap;padding:10px;background:var(--in);border-radius:12px;border:1px solid var(--bd)}
+
+nav{position:fixed;left:0;right:0;bottom:0;display:flex;background:var(--cd);border-top:1px solid var(--bd);z-index:10;max-width:640px;margin:auto;padding:8px 6px env(safe-area-inset-bottom);backdrop-filter:blur(10px)}
+nav button{flex:1;background:none;color:var(--sub);border-radius:12px;margin:0 2px;padding:8px 4px;font-size:18px;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;transition:background .2s,color .2s}
+nav button span{font-size:11px;font-weight:600}
+nav button.on{color:var(--gold);background:var(--in)}
 body:not([data-tab=thoughts]) [data-t=thoughts],
 body:not([data-tab=books]) [data-t=books],
 body:not([data-tab=repeat]) [data-t=repeat],
 body:not([data-tab=diary]) [data-t=diary] {display:none!important}
-#toast{position:fixed;left:50%;bottom:80px;transform:translateX(-50%);background:var(--tx);color:var(--bg);padding:8px 14px;border-radius:10px;font-size:13px;opacity:0;pointer-events:none;transition:opacity .3s;z-index:9}
+#toast{position:fixed;left:50%;bottom:95px;transform:translateX(-50%);background:var(--tx);color:var(--bg);padding:10px 18px;border-radius:12px;font-size:13px;font-weight:500;opacity:0;pointer-events:none;transition:opacity .3s;z-index:99;box-shadow:0 4px 15px rgba(0,0,0,0.2)}
 #toast.s{opacity:1}
 </style>
 </head>
@@ -58,7 +68,7 @@ body:not([data-tab=diary]) [data-t=diary] {display:none!important}
     <button class="pill rd" id="themeb">🌙</button>
   </div>
 </header>
-<div class="sub" id="t_sub" style="margin-bottom:12px">Второй мозг и личное пространство знаний</div>
+<div class="sub" id="t_sub" style="margin-bottom:14px">Хранилище инсайтов и путеводитель по мыслям</div>
 
 <!-- ВКЛАДКА: МЫСЛИ -->
 <div data-t="thoughts">
@@ -71,17 +81,17 @@ body:not([data-tab=diary]) [data-t=diary] {display:none!important}
   <div id="chips"></div>
 
   <div class="box">
-    <h3 id="t_addhead">🚀 Добавить мысль или цитату</h3>
+    <h3 id="t_addhead">✨ Новая мысль или инсайт</h3>
     <input type="text" id="title" placeholder="Тема или название...">
     <input type="text" id="author" placeholder="Автор...">
-    <textarea id="advice" rows="3" placeholder="Текст мысли, инсайт..."></textarea>
+    <textarea id="advice" rows="3" placeholder="Суть цитаты или мысли..."></textarea>
     <select id="cat"></select>
     <button id="save">💾 Сохранить в базу</button>
   </div>
 
   <div style="display:flex; gap:8px; margin-bottom:14px">
-    <button class="tb" id="exp" style="flex:1">📥 Экспорт бэкапа (JSON)</button>
-    <button class="tb" id="imp" style="flex:1">📤 Загрузить файл</button>
+    <button class="tb" id="exp" style="flex:1; padding:12px; border-radius:12px;">📥 Экспорт бэкапа</button>
+    <button class="tb" id="imp" style="flex:1; padding:12px; border-radius:12px;">📤 Загрузить файл</button>
     <input type="file" id="file" accept=".json" style="display:none">
   </div>
 
@@ -92,7 +102,7 @@ body:not([data-tab=diary]) [data-t=diary] {display:none!important}
 <div data-t="repeat">
   <div class="box">
     <h3 id="t_rephead">🏛 Интервальное повторение</h3>
-    <p class="sub" id="t_repdesc">Освежи в памяти случайные инсайты из своей базы, чтобы они закрепились навсегда.</p>
+    <p class="sub" id="t_repdesc">Освежи в памяти случайные инсайты из своей базы.</p>
   </div>
   <div id="repeat_card"></div>
 </div>
@@ -101,8 +111,8 @@ body:not([data-tab=diary]) [data-t=diary] {display:none!important}
 <div data-t="books">
   <div class="box">
     <h3 id="t_bookhead">📚 Моя библиотека (.txt)</h3>
-    <p class="sub" id="t_bookdesc">Загружай книги для чтения в спокойной обстановке.</p>
-    <button class="tb" id="badd" style="width:100%; margin-top:6px">➕ Загрузить книгу (.txt)</button>
+    <p class="sub" id="t_bookdesc">Читай книги с возможностью выделять и сохранять цитаты в один клик.</p>
+    <button class="tb" id="badd" style="width:100%; margin-top:8px; padding:12px; border-radius:12px; background:var(--red); color:#fff; border:0;">➕ Загрузить книгу (.txt)</button>
     <input type="file" id="bfile" accept=".txt,text/plain" style="display:none">
   </div>
   <div id="blist"></div>
@@ -112,18 +122,28 @@ body:not([data-tab=diary]) [data-t=diary] {display:none!important}
 <div data-t="diary">
   <div class="box">
     <h3 id="t_diaryhead">🤫 Дневник рефлексии</h3>
-    <p class="sub" id="t_diarydesc">Фиксируй внутреннее состояние и важные мысли за день.</p>
-    <textarea id="dnote" rows="4" placeholder="Как прошел день? Какие инсайты вынес?"></textarea>
+    <p class="sub" id="t_diarydesc">Фиксируй внутреннее состояние и важные итоги дня.</p>
+    <textarea id="dnote" rows="4" placeholder="Как прошел день? Какие выводы сделал?"></textarea>
     <button id="dok">✅ Записать итог дня</button>
   </div>
   <div id="dlist"></div>
 </div>
 
+<!-- ОКНО ЧТЕНИЯ КНИГИ С СОХРАНЕНИЕМ ЦИТАТ -->
+<div id="reader-modal" hidden>
+  <div class="rm-header">
+    <b id="rm-title" style="font-family:Georgia,serif; font-size:16px;"></b>
+    <button class="pill rd" id="rm-close">✕</button>
+  </div>
+  <div class="rm-content" id="rm-text"></div>
+  <button id="rm-save-quote" style="margin-top:10px; background:var(--gold); color:#16110f;">⭐ Сохранить выделенный текст в мысли</button>
+</div>
+
 <nav id="nav">
-  <button data-tab="thoughts" id="n_thoughts" class="on">📜<span>Мысли</span></button>
-  <button data-tab="repeat" id="n_repeat">🏛<span>Повтор</span></button>
-  <button data-tab="books" id="n_books">📚<span>Книги</span></button>
-  <button data-tab="diary" id="n_diary">🤫<span>Дневник</span></button>
+  <button data-tab="thoughts" id="n_thoughts" class="on">📜<span id="txt_m">Мысли</span></button>
+  <button data-tab="repeat" id="n_repeat">🏛<span id="txt_p">Повтор</span></button>
+  <button data-tab="books" id="n_books">📚<span id="txt_k">Книги</span></button>
+  <button data-tab="diary" id="n_diary">🤫<span id="txt_d">Дневник</span></button>
 </nav>
 
 <div id="toast"></div>
@@ -135,26 +155,26 @@ const CATS=['Общие','Тишина','Психология','Стратеги
 const DICT = {
   ru: {
     title: 'Кодекс Мудрости',
-    sub: 'Второй мозг и личное пространство знаний',
+    sub: 'Хранилище инсайтов и путеводитель по мыслям',
     search: '🔍 Поиск по мыслям и авторам...',
     all: 'Все',
     fav: '⭐ Избранное',
-    addhead: '🚀 Добавить мысль или цитату',
+    addhead: '✨ Новая мысль или инсайт',
     t_title: 'Тема или название...',
     t_author: 'Автор...',
-    t_advice: 'Текст мысли, инсайт...',
+    t_advice: 'Суть цитаты или мысли...',
     save: '💾 Сохранить в базу',
-    exp: '📥 Экспорт бэкапа (JSON)',
+    exp: '📥 Экспорт бэкапа',
     imp: '📤 Загрузить файл',
     empty: 'Ничего не найдено',
     bookhead: '📚 Моя библиотека (.txt)',
-    bookdesc: 'Загружай книги для чтения в спокойной обстановке.',
+    bookdesc: 'Читай книги с возможностью выделять и сохранять цитаты в один клик.',
     badd: '➕ Загрузить книгу (.txt)',
     bread: '👁 Читать',
     bdel: '🗑 Удалить',
     bempty: 'Пока нет загруженных книг.',
     diaryhead: '🤫 Дневник рефлексии',
-    diarydesc: 'Фиксируй внутреннее состояние и важные мысли за день.',
+    diarydesc: 'Фиксируй внутреннее состояние и важные итоги дня.',
     dsave: '✅ Записать итог дня',
     dempty: 'Записей пока нет.',
     n_thoughts: 'Мысли',
@@ -171,30 +191,31 @@ const DICT = {
     t_bok: 'Книга добавлена 📚',
     t_dok: 'Записано в дневник 🤫',
     copied: 'Скопировано 📋',
+    qsaved: 'Цитата сохранена в мысли! ✨',
     cats: {'Общие':'Общие','Тишина':'Тишина','Психология':'Психология','Стратегия':'Стратегия','Философия':'Философия','Личное':'Личное'}
   },
   tm: {
     title: 'Akyl-paparas Kodeksi',
-    sub: 'Ikinji beýni we şahsy bilim giňişligi',
+    sub: 'Paýhas hazynasy we pikirler ýoly',
     search: '🔍 Pikirlerden we awtorlardan gözleg...',
     all: 'Hemmesi',
     fav: '⭐ Halanýanlar',
-    addhead: '🚀 Täze pikir ýa-da sitata goş',
+    addhead: '✨ Täze pikir ýa-da duýdansy düşünje',
     t_title: 'Tema ýa-da ady...',
     t_author: 'Awtor...',
-    t_advice: 'Pikiriň teksti...',
+    t_advice: 'Sitata ýa-da pikiriň manysy...',
     save: '💾 Baza saklamak',
-    exp: '📥 Bekap göçurmek (JSON)',
+    exp: '📥 Bekap göçurmek',
     imp: '📤 Faýl ýüklemek',
     empty: 'Hiç zat tapylmady',
     bookhead: '📚 Meniň kitaphanam (.txt)',
-    bookdesc: 'Asuda ýagdaýda okamak üçin kitap ýükläň.',
+    bookdesc: 'Kitaplary okap, sitatalary bir basyşda ýatda saklaň.',
     badd: '➕ Kitap ýüklemek (.txt)',
     bread: '👁 Oka',
     bdel: '🗑 Poz',
-    bempty: 'Entek kitap ýok. Tekst faýlyny goşuň.',
+    bempty: 'Entek kitap ýok.',
     diaryhead: '🤫 Pikirlenme gündeligi',
-    diarydesc: 'Içki ýagdaýyňyzy we möhüm pikirleri belläň.',
+    diarydesc: 'Içki ýagdaýyňyzy we möhüm netijeleri belläň.',
     dsave: '✅ Günüň netijesini ýaz',
     dempty: 'Ýazgylar entek ýok.',
     n_thoughts: 'Pikirler',
@@ -211,6 +232,7 @@ const DICT = {
     t_bok: 'Kitap goşuldy 📚',
     t_dok: 'Gündelige ýazyldy 🤫',
     copied: 'Göçürildi 📋',
+    qsaved: 'Sitata pikirlere goşuldy! ✨',
     cats: {'Общие':'Umumy','Тишина':'Dymmak','Психология':'Psihologiýa','Стратегия':'Strategiýa','Философия':'Pelsepe','Личное':'Şahsy'}
   }
 };
@@ -219,6 +241,7 @@ let lang = localStorage.getItem('kodeks_lang') || 'ru';
 let theme = localStorage.getItem('kodeks_theme') || 'dark';
 let cat = 'all';
 let authorFilter = '';
+let currentBookForRead = null;
 let cards = JSON.parse(localStorage.getItem('kodeks_cards')) || [
   {id:1, title:'Контроль речи', author:'Юсуп', advice:'Слово — серебро, молчание — золото. Прежде чем сказать лишнее, спроси себя: улучшит ли это тишину?', category:'Тишина', fav:true},
   {id:2, title:'Антихрупкость', author:'Нассим Талеб', advice:'Некоторые вещи от беспорядка портятся, но есть те, что от ударов и хаоса становятся только крепче.', category:'Общие', fav:false}
@@ -262,10 +285,12 @@ function updateTexts(){
   $('t_diaryhead').textContent = t.diaryhead;
   $('t_diarydesc').textContent = t.diarydesc;
   $('dok').textContent = t.dsave;
-  $('n_thoughts').innerHTML = `📜<span>${t.n_thoughts}</span>`;
-  $('n_repeat').innerHTML = `🏛<span>${t.n_repeat}</span>`;
-  $('n_books').innerHTML = `📚<span>${t.n_books}</span>`;
-  $('n_diary').innerHTML = `🤫<span>${t.n_diary}</span>`;
+  
+  $('txt_m').textContent = t.n_thoughts;
+  $('txt_p').textContent = t.n_repeat;
+  $('txt_k').textContent = t.n_books;
+  $('txt_d').textContent = t.n_diary;
+
   $('t_daytitle').textContent = t.daytitle;
   $('t_rephead').textContent = t.rephead;
   $('t_repdesc').textContent = t.repdesc;
@@ -296,7 +321,7 @@ function renderDayQuote(){
   $('qd_text').textContent = `«${item.advice}» — ${item.author || (lang==='ru'?'Неизвестный':'Näbelli')}`;
 }
 
-// Рендер мыслей с фильтром по автору
+// Рендер мыслей
 function renderThoughts(){
   const t = DICT[lang];
   const q = $('q').value.toLowerCase();
@@ -369,7 +394,7 @@ $('save').onclick=()=>{
 
 $('q').oninput = renderThoughts;
 
-// Интервальное повторение
+// Повторение
 function renderRepeatCard(){
   const t = DICT[lang];
   const rc = $('repeat_card');
@@ -384,7 +409,7 @@ function renderRepeatCard(){
       <h3>📜 ${randomCard.title}</h3>
       <p>${randomCard.advice}</p>
       ${randomCard.author?`<div class="au">— ${randomCard.author}</div>`:''}
-      <button class="tb" style="width:100%; margin-top:14px; background:var(--red); color:#fff; border:0; padding:10px;" onclick="renderRepeatCard()">${t.repnext}</button>
+      <button class="tb" style="width:100%; margin-top:14px; background:var(--red); color:#fff; border:0; padding:11px; border-radius:12px;" onclick="renderRepeatCard()">${t.repnext}</button>
     </div>
   `;
 }
@@ -459,8 +484,33 @@ window.delBook = id => {
 window.readBook = id => {
   const b = books.find(x=>x.id===id);
   if(!b) return;
-  const w = window.open();
-  w.document.write(`<pre style="font-family:Georgia,serif; font-size:18px; line-height:1.6; padding:20px; background:#16110f; color:#f1e8d8; white-space:pre-wrap;">${b.text}</pre>`);
+  currentBookForRead = b;
+  $('rm-title').textContent = b.name;
+  $('rm-text').textContent = b.text;
+  $('reader-modal').hidden = false;
+};
+
+$('rm-close').onclick = () => { $('reader-modal').hidden = true; };
+
+// Быстрое сохранение выделенного текста из книги как цитаты
+$('rm-save-quote').onclick = () => {
+  const selection = window.getSelection().toString().trim();
+  if(!selection) {
+    toast(lang==='ru'?'Выдели текст в книге!':'Kitapdan tekst saýlaň!');
+    return;
+  }
+  cards.unshift({
+    id: Date.now(),
+    title: currentBookForRead ? currentBookForRead.name : 'Цитата из книги',
+    author: '',
+    advice: selection,
+    category: 'Общие',
+    fav: false
+  });
+  localStorage.setItem('kodeks_cards', JSON.stringify(cards));
+  renderThoughts();
+  toast(DICT[lang].qsaved);
+  $('reader-modal').hidden = true;
 };
 
 // Дневник
