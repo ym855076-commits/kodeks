@@ -88,10 +88,10 @@ body:not([data-tab=diary]) [data-t=diary] {display:none!important}
   <div id="list"></div>
 </div>
 
-<!-- ВКЛАДКА: ПОВТОРЕНИЕ (Spaced Repetition) -->
+<!-- ВКЛАДКА: ПОВТОРЕНИЕ -->
 <div data-t="repeat">
   <div class="box">
-    <h3 id="t_rephead">🧠 Интервальное повторение</h3>
+    <h3 id="t_rephead">🏛 Интервальное повторение</h3>
     <p class="sub" id="t_repdesc">Освежи в памяти случайные инсайты из своей базы, чтобы они закрепились навсегда.</p>
   </div>
   <div id="repeat_card"></div>
@@ -121,7 +121,7 @@ body:not([data-tab=diary]) [data-t=diary] {display:none!important}
 
 <nav id="nav">
   <button data-tab="thoughts" id="n_thoughts" class="on">📜<span>Мысли</span></button>
-  <button data-tab="repeat" id="n_repeat">🏛<span>Gaýtala</span></button> <!-- Обновленная иконка -->
+  <button data-tab="repeat" id="n_repeat">🏛<span>Повтор</span></button>
   <button data-tab="books" id="n_books">📚<span>Книги</span></button>
   <button data-tab="diary" id="n_diary">🤫<span>Дневник</span></button>
 </nav>
@@ -158,11 +158,11 @@ const DICT = {
     dsave: '✅ Записать итог дня',
     dempty: 'Записей пока нет.',
     n_thoughts: 'Мысли',
-    n_repeat: 'Gaýtala',
+    n_repeat: 'Повтор',
     n_books: 'Книги',
     n_diary: 'Дневник',
     daytitle: '💡 Мысль дня',
-    rephead: '🧠 Интервальное повторение',
+    rephead: '🏛 Интервальное повторение',
     repdesc: 'Освежи в памяти случайные инсайты из своей базы.',
     repnext: '🔄 Следующая цитата',
     delQ: 'Удалить мысль?',
@@ -192,7 +192,7 @@ const DICT = {
     badd: '➕ Kitap ýüklemek (.txt)',
     bread: '👁 Oka',
     bdel: '🗑 Poz',
-    bempty: 'Entek kitap ýok. Тekst faýlyny goşuň.',
+    bempty: 'Entek kitap ýok. Tekst faýlyny goşuň.',
     diaryhead: '🤫 Pikirlenme gündeligi',
     diarydesc: 'Içki ýagdaýyňyzy we möhüm pikirleri belläň.',
     dsave: '✅ Günüň netijesini ýaz',
@@ -202,7 +202,7 @@ const DICT = {
     n_books: 'Kitaplar',
     n_diary: 'Gündelik',
     daytitle: '💡 Günüň pikiri',
-    rephead: '🧠 Aralykla gaýtalamak',
+    rephead: '🏛 Aralykla gaýtalamak',
     repdesc: 'Bilim bazalygyňdan tötänleýin pikirleri ýadyňa sal.',
     repnext: '🔄 Indiki sitata',
     delQ: 'Pikiri pozmalymy?',
@@ -380,7 +380,7 @@ function renderRepeatCard(){
   const randomCard = cards[Math.floor(Math.random() * cards.length)];
   rc.innerHTML = `
     <div class="card" style="border-color:var(--gold);">
-      <span class="tag">🧠 ${t.rephead}</span>
+      <span class="tag">🏛 ${t.rephead}</span>
       <h3>📜 ${randomCard.title}</h3>
       <p>${randomCard.advice}</p>
       ${randomCard.author?`<div class="au">— ${randomCard.author}</div>`:''}
@@ -456,7 +456,6 @@ window.delBook = id => {
   renderBooks();
 };
 
-// ИСПРАВЛЕНО: Функция чтения книги (ранее отсутствовала)
 window.readBook = id => {
   const b = books.find(x=>x.id===id);
   if(!b) return;
